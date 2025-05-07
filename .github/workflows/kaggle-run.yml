@@ -35,5 +35,5 @@ jobs:
     - name: Run notebook
       id: run_notebook1
       run: |
-        papermill .github/workflows/github-automated-tempalert-short.ipynb \
-                  .github/workflows/github-automated-tempalert-short.output.ipynb
+        papermill .github/workflows/automated-tempalert-short.ipynb \
+                  .github/workflows/automated-tempalert-short.output.ipynb
