@@ -32,11 +32,12 @@ jobs:
     - name: List files for debugging
       run: ls -lhR .github/workflows/
 
-    - name: Run notebook with clean output
-      id: run_notebook
+    - name: Run notebook and show only print() output
+      id: run_notebook1
       run: |
-        pip install kaggle nbconvert ipykernel papermill > /dev/null
-        echo "▶️ Starting notebook..."
+        echo "▶️ Running notebook with clean output"
+        pip install papermill > /dev/null 2>&1
         papermill .github/workflows/automated-tempalert-short.ipynb \
-                  .github/workflows/automated-tempalert-short.output.ipynb \
-                  --log-output --no-progress-bar --quiet
+                /tmp/output.ipynb \
+                --log-output --no-progress-bar 2>&1 | grep -E "🔥|✅|⚠️|❌|🔘|👀|☑️|Notebook started|Logged in"
+
